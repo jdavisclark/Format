@@ -8,12 +8,13 @@ class JsFormatter():
 		return "javascript formatter"
 
 	def accept(self, ext, syntax):
+		acc = False
 		if(ext != None):
-			return ext == "js"
-		elif(syntax != None):
-			return syntax.find("javascript") != -1
-		else:
-			return False
+			acc = ext == "js"
+		if(acc == False and syntax != None):
+			acc = syntax.find("javascript") != -1
+		
+		return acc
 
 	def format(self, s, view):
 		vSettings = view.settings()

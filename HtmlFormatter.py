@@ -13,9 +13,10 @@ class HtmlFormatter:
 
 	
 	def accept(self, ext, syntax):
+		acc = False
 		if(ext != None) :
-			return ext == "html"
-		elif(syntax != None):
-			return syntax.find("html") != -1
-		else:
-			return False
+			acc = ext in ["html", "asp", "aspx", "mustache", "htm", "xml"]
+		if(acc == False and syntax != None):
+			acc = syntax.find("html") != -1
+		
+		return acc

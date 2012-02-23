@@ -23,7 +23,7 @@ class FormatCommand(sublime_plugin.TextCommand):
 
 		if (fName != None): # file exists, pull syntax type from extension
 			ext = os.path.splitext(fName)[1][1:]
-		elif(syntaxPath != None):
+		if(syntaxPath != None):
 			syntax = os.path.splitext(syntaxPath)[0].split('/')[-1].lower()
 
 		formatter = None
