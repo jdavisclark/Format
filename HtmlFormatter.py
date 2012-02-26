@@ -8,7 +8,7 @@ class HtmlFormatter:
 		return "html formatter"
 
 	def format(self, s, view):
-		soup = bs(s, indentWidth = "    ")
+		soup = bs(s, indentWidth = self.settings.get("indent_string"))
 		return soup.prettify()
 
 	

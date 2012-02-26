@@ -2,8 +2,11 @@ import sublime, sublime_plugin, re, os
 from HtmlFormatter import HtmlFormatter
 from JsFormatter import JsFormatter
 
-s = sublime.load_settings('Format.sublime-settings')
-formatters = [JsFormatter(s), HtmlFormatter(s)]
+formatSettings = sublime.load_settings('Format.sublime-settings')
+jsSettings = sublime.load_settings('Format-Javascript.sublime-settings')
+htmlSettings = sublime.load_settings('Format-Html.sublime-settings')
+
+formatters = [JsFormatter(jsSettings), HtmlFormatter(htmlSettings)]
 
 class FormatCommand(sublime_plugin.TextCommand):
 	def run(self, edit):
@@ -35,10 +38,10 @@ class FormatCommand(sublime_plugin.TextCommand):
 
 
 		if(formatter == None):
-			sublime.status_message("Format: file/syntax type not currently supported!")
+			sublime.status_message('Format: file/syntax type not currently supported!')
 			return
 
-		print "Formatter Name: " + formatter.name()
+		print 'Formatter Name: ' + formatter.name()
 
 		# do formatting and replacement
 		replaceRegion = selection if len(selection) > 0 else fileRegion
